@@ -1,0 +1,163 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<div class="card-container">
+    <div class="card-wrapper">
+        @if (showCard)
+        {
+            <div class="card">
+                <h2 class="card-title">@CurrentCard.Title</h2>
+                <img src="@($"{CurrentCard.GifPath}?t={Guid.NewGuid()}")" alt="Cool animation" class="card-image" />
+                <p class="card-text">@CurrentCard.Rules</p>
+            </div>
+        }
+        <button class="card-button" @onclick="OnStratButtonClick">Reroll !</button>
+    </div>
+</div>
+
+<style>
+    .card-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;  /* THIS centers the button horizontally */
+        max-width: 600px;
+        width: 100%;
+    }
+
+    .card-container {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f3f4f6; /* light background */
+    }
+
+    .card {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        text-align: center;
+        max-height: 600px;
+        height: 100%;
+        max-width: 600px;
+        width: 100%;
+    }
+
+    .card-title {
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    .card-image {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 1rem;
+    }
+
+    .card-text {
+        font-size: 1rem;
+        color: #555;
+    }
+</style>
+
+@inject IJSRuntime JS
+
+@code {
+    private int CurrentIndex = 0;
+    private bool showCard = true;
+    private Models.Card CurrentCard = new();
+    private List<Models.Card> AllCards = new();
+
+    private Random _rand = new();
+
+    protected override void OnInitialized()
+    {
+        InitliazeCards();
+        base.OnInitialized();
+    }
+
+    private async Task OnStratButtonClick()
+    {
+        showCard = false;
+        int nextIndex = _rand.Next(AllCards.Count);
+
+        if (nextIndex == CurrentIndex)
+            nextIndex = (CurrentIndex + 1) % (AllCards.Count - 1);
+
+        CurrentIndex = nextIndex;
+        CurrentCard = AllCards[CurrentIndex];
+        StateHasChanged();
+        Console.WriteLine($"New Card: {CurrentCard.Title}");
+        await Task.Delay(25);
+        showCard = true;
+    }
+
+    private void InitliazeCards()
+    {
+        Models.Card dolphinShot = new();
+        dolphinShot.GifPath = "images/DolphinShot.gif";
+        dolphinShot.Title = "Dolphin Shot";
+        dolphinShot.Rules = "Your next goal MUST be made with a Dolphin Shot !";
+
+        Models.Card bladeShot = new();
+        bladeShot.GifPath = "images/BladeShot.gif";
+        bladeShot.Title = "Blade Shot";
+        bladeShot.Rules = "Your next goal MUST be made with a Blade Shot !";
+
+        Models.Card cockyShot = new();
+        cockyShot.GifPath = "images/CockyShot.gif";
+        cockyShot.Title = "Cocky Shot";
+        cockyShot.Rules = "Your next goal MUST be made with a Cocky Shot !";
+
+        Models.Card oneTouch = new();
+        oneTouch.GifPath = "images/OneTouch.gif";
+        oneTouch.Title = "Burning Ball";
+        oneTouch.Rules = "Until your next goal, you can only touch the ball once ! If you control the ball, you must leave it.";
+
+        Models.Card tripleBackBoard = new();
+        tripleBackBoard.GifPath = "images/TripleBackboard.gif";
+        tripleBackBoard.Title = "Triple Backboard";
+        tripleBackBoard.Rules = "Your next goal MUST be made with three back-to-back backboard hits !";
+
+        Models.Card walkIn = new();
+        walkIn.GifPath = "images/WalkIn.gif";
+        walkIn.Title = "Walk In";
+        walkIn.Rules = "Your next goal MUST be made by walking in the net !";
+
+        Models.Card legendaryAttacker = new();
+        legendaryAttacker.GifPath = "images/LegendaryAttacker.gif";
+        legendaryAttacker.Title = "Legendary Striker";
+        legendaryAttacker.Rules = "Only one player may be in the opposing half of the field at any time !";
+
+        Models.Card legendaryDefender = new();
+        legendaryDefender.GifPath = "images/LegendaryDefender.gif";
+        legendaryDefender.Title = "Legendary Defender";
+        legendaryDefender.Rules = "Only one player may be in the friendly half of the field at any time (excluding the goalie) !";
+
+        Models.Card sombrero = new();
+        sombrero.GifPath = "images/Sombrero.gif";
+        sombrero.Title = "Sombrero";
+        sombrero.Rules = "Your next goal MUST be made by a sombrero dribble !";
+
+        Models.Card rockFeet = new();
+        legendaryAttacker.GifPath = "images/RockFeet.gif";
+        legendaryAttacker.Title = "Rock Feet";
+        legendaryAttacker.Rules = "You can only pass or shoot using the powershot !";
+
+        AllCards.Add(dolphinShot);
+        AllCards.Add(bladeShot);
+        AllCards.Add(cockyShot);
+        AllCards.Add(oneTouch);
+        AllCards.Add(tripleBackBoard);
+        AllCards.Add(walkIn);
+        AllCards.Add(legendaryAttacker);
+        AllCards.Add(legendaryDefender);
+        AllCards.Add(sombrero);
+        AllCards.Add(rockFeet);
+
+        CurrentCard = AllCards[_rand.Next(AllCards.Count)];
+    }
+}
