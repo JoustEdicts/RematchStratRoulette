@@ -2,21 +2,49 @@
 
 <PageTitle>Home</PageTitle>
 
-<div class="card-container">
-    <div class="card-wrapper">
-        @if (showCard)
+<div class="title-container">
+    <h1 class="page-title">Rematch Strat Roulette</h1>
+</div>
+<div class="carousel-container">
+    <div class="carousel-track" @ref="carouselTrackRef">
+        @foreach (var cardWithIndex in AllCards.Select((card, idx) => (card, idx)))
         {
-            <div class="card">
-                <h2 class="card-title">@CurrentCard.Title</h2>
-                <img src="@($"{CurrentCard.GifPath}?t={Guid.NewGuid()}")" alt="Cool animation" class="card-image" />
-                <p class="card-text">@CurrentCard.Rules</p>
+            var card = cardWithIndex.card;
+            var idx = cardWithIndex.idx;
+            var isSelected = (idx == CurrentIndex);
+            <div class="card" style="background-color:@(isSelected ? "#d1fae5" : "white")">
+                <h2 class="card-title" style="color:@(isSelected ? "black" : "gray")">@card.Title</h2>
+                <img src="@(isSelected ? card.GifPath : GetStaticFrame(card.GifPath))" alt="Cool animation" class="card-image" />
+                <p class="card-text" style="color:@(isSelected ? "black" : "gray")">@card.Rules</p>
             </div>
         }
-        <button class="card-button" @onclick="OnStratButtonClick">Reroll !</button>
     </div>
 </div>
+<button class="card-button" @onclick="SpinCarousel">Spin!</button>
 
 <style>
+    body {
+        /* total height of one gradient cycle */
+        --gradient-height: 1200px;
+        background: repeating-linear-gradient( to bottom, #bbd2c5 0, #536976 calc(var(--gradient-height) / 2), #292e49 var(--gradient-height), #292e49 var(--gradient-height), #536976 calc(var(--gradient-height) + var(--gradient-height) / 2), #bbd2c5 calc(var(--gradient-height) * 2) );
+        background-size: 100% calc(var(--gradient-height) * 2);
+        background-repeat: repeat-y;
+    }
+
+    .title-container {
+        height: 100vh; /* Full screen height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .page-title {
+        font-size: 4rem;
+        font-weight: bold;
+        color: #1f2937;
+        text-align: center;
+    }
+
     .card-wrapper {
         display: flex;
         flex-direction: column;
@@ -34,15 +62,13 @@
     }
 
     .card {
+        width: 400px;
+        flex-shrink: 0;
         background-color: white;
         padding: 2rem;
         border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         text-align: center;
-        max-height: 600px;
-        height: 100%;
-        max-width: 600px;
-        width: 100%;
     }
 
     .card-title {
@@ -61,11 +87,78 @@
         font-size: 1rem;
         color: #555;
     }
+
+    .carousel-container {
+        width: 100vw; /* FULL SCREEN WIDTH */
+        overflow: hidden;
+        position: relative;
+        height: 600px;
+    }
+
+    .carousel-track {
+        display: flex;
+        gap: 40px;
+        transition: transform 0.3s ease-out;
+        will-change: transform;
+        padding: 40px 0; /* Optional vertical spacing */
+    }
+
+    .card-button {
+        display: block;
+        margin: 40px auto 0 auto; /* Top margin pushes it down */
+        padding: 1rem 2rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        background-color: #4f46e5; /* Indigo shade */
+        color: white;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease;
+    }
+
+        .card-button:hover {
+            background-color: #3730a3; /* Slightly darker indigo on hover */
 </style>
+
+<script>
+    window.carouselSpinTo = function (element, targetX, duration = 2000) {
+        return new Promise((resolve) => {
+            let start = null;
+            let initialX = element._currentX || 0;
+            let delta = targetX - initialX;
+
+            function animate(timestamp) {
+                if (!start) start = timestamp;
+                let elapsed = timestamp - start;
+                let progress = Math.min(elapsed / duration, 1);
+                let ease = 1 - Math.pow(1 - progress, 3); // ease-out
+                let currentX = initialX + delta * ease;
+                element.style.transform = `translateX(${currentX}px)`;
+                element._currentX = currentX;
+                if (progress < 1) {
+                    requestAnimationFrame(animate);
+                } else {
+                    resolve();
+                }
+            }
+
+            requestAnimationFrame(animate);
+        });
+    };
+
+    window.getWindowWidth = function () {
+        return window.innerWidth;
+    };
+</script>
 
 @inject IJSRuntime JS
 
 @code {
+    private ElementReference carouselTrackRef;
+    private int cardWidth = 400; // 400px card + 40px gap
+    private int cardGap = 40; // 400px card + 40px gap
     private int CurrentIndex = 0;
     private bool showCard = true;
     private Models.Card CurrentCard = new();
@@ -79,9 +172,40 @@
         base.OnInitialized();
     }
 
+    private string GetStaticFrame(string gifPath)
+    {
+        if (string.IsNullOrEmpty(gifPath))
+            return "";
+
+        return gifPath.Replace(".gif", ".png"); // assuming your PNGs have the same name as GIFs
+    }
+
+    private async Task SpinCarousel()
+    {
+        int nextIndex = _rand.Next(AllCards.Count);
+
+        // Get viewport width from JS
+        int windowWidth = await JS.InvokeAsync<int>("getWindowWidth");
+
+        // Total width per card includes ONE gap (between cards)
+        int cardSpacing = cardWidth + cardGap;
+
+        // Center offset based on window size
+        int centerOffset = (windowWidth / 2) - (cardWidth / 2);
+
+        // Target offset (negative) to bring the desired card to center
+        int targetOffset = -(nextIndex * cardSpacing) + centerOffset;
+
+        await JS.InvokeVoidAsync("carouselSpinTo", carouselTrackRef, targetOffset, 1500);
+
+        CurrentIndex = nextIndex;
+    }
+
     private async Task OnStratButtonClick()
     {
         showCard = false;
+        CurrentCard.GifPath = null;
+
         int nextIndex = _rand.Next(AllCards.Count);
 
         if (nextIndex == CurrentIndex)
@@ -143,9 +267,9 @@
         sombrero.Rules = "Your next goal MUST be made by a sombrero dribble !";
 
         Models.Card rockFeet = new();
-        legendaryAttacker.GifPath = "images/RockFeet.gif";
-        legendaryAttacker.Title = "Rock Feet";
-        legendaryAttacker.Rules = "You can only pass or shoot using the powershot !";
+        rockFeet.GifPath = "images/RockFeet.gif";
+        rockFeet.Title = "Rock Feet";
+        rockFeet.Rules = "You can only pass or shoot using the powershot !";
 
         AllCards.Add(dolphinShot);
         AllCards.Add(bladeShot);
