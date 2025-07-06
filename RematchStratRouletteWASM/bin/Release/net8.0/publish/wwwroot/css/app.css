@@ -101,3 +101,39 @@ a, .btn-link {
 code {
     color: #c02d76;
 }
+
+body, html, .main-layout {
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-layout {
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Example: a purple gradient */
+    overflow: hidden;
+}
+
+.fading-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.2), transparent 70%);
+    pointer-events: none; /* so it doesn't block clicks */
+    animation: fadeInOut 10s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
