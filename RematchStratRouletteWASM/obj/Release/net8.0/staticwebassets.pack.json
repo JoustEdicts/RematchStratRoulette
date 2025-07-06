@@ -37,40 +37,80 @@
       "PackagePath": "staticwebassets\\images\\BladeShot.gif"
     },
     {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\BladeShot.png",
+      "PackagePath": "staticwebassets\\images\\BladeShot.png"
+    },
+    {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\CockyShot.gif",
       "PackagePath": "staticwebassets\\images\\CockyShot.gif"
+    },
+    {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\CockyShot.png",
+      "PackagePath": "staticwebassets\\images\\CockyShot.png"
     },
     {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\DolphinShot.gif",
       "PackagePath": "staticwebassets\\images\\DolphinShot.gif"
     },
     {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\DolphinShot.png",
+      "PackagePath": "staticwebassets\\images\\DolphinShot.png"
+    },
+    {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\LegendaryAttacker.gif",
       "PackagePath": "staticwebassets\\images\\LegendaryAttacker.gif"
+    },
+    {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\LegendaryAttacker.png",
+      "PackagePath": "staticwebassets\\images\\LegendaryAttacker.png"
     },
     {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\LegendaryDefender.gif",
       "PackagePath": "staticwebassets\\images\\LegendaryDefender.gif"
     },
     {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\LegendaryDefender.png",
+      "PackagePath": "staticwebassets\\images\\LegendaryDefender.png"
+    },
+    {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\OneTouch.gif",
       "PackagePath": "staticwebassets\\images\\OneTouch.gif"
+    },
+    {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\OneTouch.png",
+      "PackagePath": "staticwebassets\\images\\OneTouch.png"
     },
     {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\RockFeet.gif",
       "PackagePath": "staticwebassets\\images\\RockFeet.gif"
     },
     {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\RockFeet.png",
+      "PackagePath": "staticwebassets\\images\\RockFeet.png"
+    },
+    {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\Sombrero.gif",
       "PackagePath": "staticwebassets\\images\\Sombrero.gif"
+    },
+    {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\Sombrero.png",
+      "PackagePath": "staticwebassets\\images\\Sombrero.png"
     },
     {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\TripleBackboard.gif",
       "PackagePath": "staticwebassets\\images\\TripleBackboard.gif"
     },
     {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\TripleBackboard.png",
+      "PackagePath": "staticwebassets\\images\\TripleBackboard.png"
+    },
+    {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\WalkIn.gif",
       "PackagePath": "staticwebassets\\images\\WalkIn.gif"
+    },
+    {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\WalkIn.png",
+      "PackagePath": "staticwebassets\\images\\WalkIn.png"
     },
     {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\format.txt",

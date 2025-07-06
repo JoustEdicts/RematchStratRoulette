@@ -1029,3 +1029,4 @@ C:\Users\jmlom\source\repos\RematchStratRouletteWASM\RematchStratRouletteWASM\ob
 C:\Users\jmlom\source\repos\RematchStratRouletteWASM\RematchStratRouletteWASM\obj\Release\net8.0\refint\RematchStratRouletteWASM.dll
 C:\Users\jmlom\source\repos\RematchStratRouletteWASM\RematchStratRouletteWASM\obj\Release\net8.0\RematchStratRouletteWASM.pdb
 C:\Users\jmlom\source\repos\RematchStratRouletteWASM\RematchStratRouletteWASM\obj\Release\net8.0\ref\RematchStratRouletteWASM.dll
+C:\Users\jmlom\source\repos\RematchStratRouletteWASM\RematchStratRouletteWASM\obj\Release\net8.0\RematchStratRouletteWASM.sourcelink.json
