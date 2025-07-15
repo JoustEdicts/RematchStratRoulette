@@ -7,6 +7,18 @@
 <audio id="crowdCheerAudio" src="sounds/crowd_cheer.mp3" preload="auto"></audio>
 <audio id="ballKickAudio" src="sounds/ball_kick.mp3" preload="auto"></audio>
 
+<link rel="preload" href="images/BladeShot.gif" as="image">
+<link rel="preload" href="images/CockyShot.gif" as="image">
+<link rel="preload" href="images/DolphinShot.gif" as="image">
+<link rel="preload" href="images/LegendaryAttacker.gif" as="image">
+<link rel="preload" href="images/LegendaryDefender.gif" as="image">
+<link rel="preload" href="images/OneTouch.gif" as="image">
+<link rel="preload" href="images/RockFeet.gif" as="image">
+<link rel="preload" href="images/Sombrero.gif" as="image">
+<link rel="preload" href="images/TripleBackboard.gif" as="image">
+<link rel="preload" href="images/WalkIn.gif" as="image">
+
+
 <div class="splash-screen @(showSplash ? "fade-in" : "fade-out")" @onclick="PlaySoundAndFade">
     <div class="logo-wrapper">
         <div class="logo-glow"></div>
@@ -22,20 +34,20 @@
                 var card = cardWithIndex.card;
                 var idx = cardWithIndex.idx;
                 var isSelected = (idx == CurrentIndex);
-                <div class="card" style="background-color:@(isSelected ? "#d1fae5" : "white")">
-                    <h2 class="card-title" style="color:@(isSelected ? "black" : "gray")">@card.Title</h2>
+                <div class="card @(isSelected ? "selected-card" : "")" style="background-color:@(isSelected ? "#1f5a4d" : "white")">
+                <h2 class="card-title" style="color:@(isSelected ? "black" : "gray")">@card.Title</h2>
                     <img src="@(isSelected ? card.GifPath : GetStaticFrame(card.GifPath))" alt="Cool animation" class="card-image" />
                     <p class="card-text" style="color:@(isSelected ? "black" : "gray")">@card.Rules</p>
 
                     <!-- Dislike Icon (bottom left) -->
-                    <img src="images/svg_dislike.svg"
+                    <!--<img src="images/svg_dislike.svg"
                             @onclick="() => OnDislike(card)"
-                            class="svg-icon dislike-icon" />
+                            class="svg-icon dislike-icon" />-->
 
                     <!-- Like Icon (bottom right) -->
-                    <img src="images/svg_like.svg"
+                    <!--<img src="images/svg_like.svg"
                             @onclick="() => OnLike(card)"
-                            class="svg-icon like-icon" />
+                            class="svg-icon like-icon" />-->
                 </div>
             }
         </div>
@@ -111,6 +123,13 @@
         z-index: 1000; /* ensure it overlays main content */
     }
 
+    .selected-card {
+        transform: scale(1.1); /* Slightly larger */
+        z-index: 10;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
     .fade-in {
         opacity: 1;
         pointer-events: auto;
@@ -134,7 +153,12 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         text-align: center;
         text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.2s ease;
     }
+
+        .fixed-button:hover {
+            transform: scale(1.05);
+        }
 
     .submit-button {
         display: flex;
@@ -153,6 +177,7 @@
         .submit-button:hover {
             background-color: #1f5a4d;
             transform: scale(1.05);
+            color: white; /* 👈 Prevents blue text on hover */
         }
 
     .hidden-interaction {
@@ -326,12 +351,14 @@
 
         if (audio1) {
             audio1.currentTime = 0;
+            audio1.volume = 0.5; // Set whistle volume to 50%
             audio1.play();
         }
 
         if (audio2) {
             setTimeout(() => {
                 audio2.currentTime = 0;
+                audio2.volume = 0.5; // Set whistle volume to 50%
                 audio2.play();
             }, 300);  // 500 milliseconds delay
         }
@@ -380,7 +407,12 @@
 
     private async Task SpinCarousel()
     {
-        int nextIndex = _rand.Next(AllCards.Count);
+        int nextIndex;
+        var rand = new Random();
+        do
+        {
+            nextIndex = rand.Next(AllCards.Count);
+        } while (nextIndex == CurrentIndex); // prevent same index
 
         await JS.InvokeVoidAsync("playKickSound");
 
