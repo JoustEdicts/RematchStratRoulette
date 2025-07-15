@@ -1,0 +1,5 @@
+left: 1280
+top: 0
+width: 1280
+height: 1080
+aspect ratio: square

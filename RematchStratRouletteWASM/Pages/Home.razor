@@ -1,35 +1,173 @@
 ﻿@page "/"
+@inject IJSRuntime JS
 
-<PageTitle>Home</PageTitle>
+<PageTitle>REMATCH StratRoulette</PageTitle>
 
-<div class="title-container">
-    <h1 class="page-title">Rematch Strat Roulette</h1>
-</div>
-<div class="carousel-container">
-    <div class="carousel-track" @ref="carouselTrackRef">
-        @foreach (var cardWithIndex in AllCards.Select((card, idx) => (card, idx)))
-        {
-            var card = cardWithIndex.card;
-            var idx = cardWithIndex.idx;
-            var isSelected = (idx == CurrentIndex);
-            <div class="card" style="background-color:@(isSelected ? "#d1fae5" : "white")">
-                <h2 class="card-title" style="color:@(isSelected ? "black" : "gray")">@card.Title</h2>
-                <img src="@(isSelected ? card.GifPath : GetStaticFrame(card.GifPath))" alt="Cool animation" class="card-image" />
-                <p class="card-text" style="color:@(isSelected ? "black" : "gray")">@card.Rules</p>
-            </div>
-        }
+<audio id="whistleAudio" src="sounds/whistle.mp3" preload="auto"></audio>
+<audio id="crowdCheerAudio" src="sounds/crowd_cheer.mp3" preload="auto"></audio>
+<audio id="ballKickAudio" src="sounds/ball_kick.mp3" preload="auto"></audio>
+
+<div class="splash-screen @(showSplash ? "fade-in" : "fade-out")" @onclick="PlaySoundAndFade">
+    <div class="logo-wrapper">
+        <div class="logo-glow"></div>
+        <img src="RSR_logo.png" alt="Logo" class="logo" />
     </div>
 </div>
-<button class="card-button" @onclick="SpinCarousel">Spin!</button>
+
+<div class="main-content @(showSplash ? "fade-out hidden-interaction" : "fade-in")">
+    <div class="carousel-container">
+        <div class="carousel-track" @ref="carouselTrackRef">
+            @foreach (var cardWithIndex in AllCards.Select((card, idx) => (card, idx)))
+            {
+                var card = cardWithIndex.card;
+                var idx = cardWithIndex.idx;
+                var isSelected = (idx == CurrentIndex);
+                <div class="card" style="background-color:@(isSelected ? "#d1fae5" : "white")">
+                    <h2 class="card-title" style="color:@(isSelected ? "black" : "gray")">@card.Title</h2>
+                    <img src="@(isSelected ? card.GifPath : GetStaticFrame(card.GifPath))" alt="Cool animation" class="card-image" />
+                    <p class="card-text" style="color:@(isSelected ? "black" : "gray")">@card.Rules</p>
+
+                    <!-- Dislike Icon (bottom left) -->
+                    <img src="images/svg_dislike.svg"
+                            @onclick="() => OnDislike(card)"
+                            class="svg-icon dislike-icon" />
+
+                    <!-- Like Icon (bottom right) -->
+                    <img src="images/svg_like.svg"
+                            @onclick="() => OnLike(card)"
+                            class="svg-icon like-icon" />
+                </div>
+            }
+        </div>
+    </div>
+    <button class="card-button" @onclick="SpinCarousel">Spin!</button>
+</div>
+
+<div class="fixed-button-wrapper">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfHuE5CQU_h25V1ly3HRyxuzeh5OEB7iLIlm-Z8LCi9UXjDbg/viewform?usp=header" target="_blank" class="fixed-button submit-button">
+        Submit your rule !
+    </a>
+
+    <a href="https://www.buymeacoffee.com/joustedicts" target="_blank" class="fixed-button">
+        <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+             alt="Buy Me A Coffee"
+             style="height: 60px; width: 217px;">
+    </a>
+</div>
 
 <style>
     body {
-        /* total height of one gradient cycle */
-        --gradient-height: 1200px;
-        background: repeating-linear-gradient( to bottom, #bbd2c5 0, #536976 calc(var(--gradient-height) / 2), #292e49 var(--gradient-height), #292e49 var(--gradient-height), #536976 calc(var(--gradient-height) + var(--gradient-height) / 2), #bbd2c5 calc(var(--gradient-height) * 2) );
-        background-size: 100% calc(var(--gradient-height) * 2);
-        background-repeat: repeat-y;
+        background-image: url('/images/football_field.jpg');
+        background-size: cover; /* Scales the image to cover the entire screen */
+        background-position: center; /* Centers the image */
+        background-repeat: no-repeat; /* Prevents repeating */
+        margin: 0;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
     }
+
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* This horizontally centers children */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        width: 100vw;
+        overflow: hidden;
+    }
+
+    .logo-wrapper {
+        position: relative;
+        display: inline-block;
+    }
+
+    .logo-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 350px;
+        height: 350px;
+        border-radius: 50%;
+        background: radial-gradient(circle, white 0%, rgba(255, 255, 255, 0) 70%);
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    .splash-screen {
+        display: flex;
+        justify-content: center; /* Horizontal centering */
+        align-items: center; /* Vertical centering */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: transparent;
+        transition: opacity 0.5s ease;
+        z-index: 1000; /* ensure it overlays main content */
+    }
+
+    .fade-in {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .fade-out {
+        opacity: 0;
+        pointer-events: none; /* Prevent interaction when hidden */
+    }
+
+    .fixed-button-wrapper {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        gap: 12px;
+        z-index: 9999;
+    }
+
+    .fixed-button {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .submit-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 60px;
+        width: 217px;
+        background-color: #1f5a4d; /* Green */
+        color: white;
+        font-size: 1.25rem;
+        font-weight: bold;
+        border-radius: 12px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .submit-button:hover {
+            background-color: #1f5a4d;
+            transform: scale(1.05);
+        }
+
+    .hidden-interaction {
+        pointer-events: none;
+    }
+
+    .logo {
+        width: 300px;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+    }
+
+        .logo:hover {
+            transform: scale(1.3);
+        }
 
     .title-container {
         height: 100vh; /* Full screen height */
@@ -48,6 +186,7 @@
     .card-wrapper {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;  /* THIS centers the button horizontally */
         max-width: 600px;
         width: 100%;
@@ -90,6 +229,8 @@
 
     .carousel-container {
         width: 100vw; /* FULL SCREEN WIDTH */
+        justify-content: center;
+        align-items: center;
         overflow: hidden;
         position: relative;
         height: 600px;
@@ -105,13 +246,12 @@
 
     .card-button {
         display: block;
-        margin: 40px auto 0 auto; /* Top margin pushes it down */
         padding: 1rem 2rem;
         font-size: 1.5rem;
         font-weight: bold;
         border: none;
         border-radius: 8px;
-        background-color: #4f46e5; /* Indigo shade */
+        background-color: #1f5a4d;
         color: white;
         cursor: pointer;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -119,7 +259,35 @@
     }
 
         .card-button:hover {
-            background-color: #3730a3; /* Slightly darker indigo on hover */
+            background-color: #1f5a4d;
+            transform: scale(1.05);
+        }
+
+    .svg-icon
+    {
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        bottom: 10px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .svg-icon:hover {
+        transform: scale(1.2);
+    }
+
+    .like-icon {
+        right: 10px;
+        filter: invert(45%) sepia(77%) saturate(396%) hue-rotate(90deg) brightness(90%) contrast(92%);
+        /* Green-ish */
+    }
+
+    .dislike-icon {
+        left: 10px;
+        filter: invert(29%) sepia(84%) saturate(749%) hue-rotate(340deg) brightness(91%) contrast(92%);
+        /* Red-ish */
+    }
 </style>
 
 <script>
@@ -151,6 +319,32 @@
     window.getWindowWidth = function () {
         return window.innerWidth;
     };
+
+    function playClickSound() {
+        var audio1 = document.getElementById('whistleAudio');
+        var audio2 = document.getElementById('crowdCheerAudio');
+
+        if (audio1) {
+            audio1.currentTime = 0;
+            audio1.play();
+        }
+
+        if (audio2) {
+            setTimeout(() => {
+                audio2.currentTime = 0;
+                audio2.play();
+            }, 300);  // 500 milliseconds delay
+        }
+    }
+
+    function playKickSound() {
+        var audio1 = document.getElementById('ballKickAudio');
+
+        if (audio1) {
+            audio1.currentTime = 0;
+            audio1.play();
+        }
+    }
 </script>
 
 @inject IJSRuntime JS
@@ -163,6 +357,7 @@
     private bool showCard = true;
     private Models.Card CurrentCard = new();
     private List<Models.Card> AllCards = new();
+    private bool showSplash = true;
 
     private Random _rand = new();
 
@@ -184,6 +379,8 @@
     {
         int nextIndex = _rand.Next(AllCards.Count);
 
+        await JS.InvokeVoidAsync("playKickSound");
+
         // Get viewport width from JS
         int windowWidth = await JS.InvokeAsync<int>("getWindowWidth");
 
@@ -199,6 +396,25 @@
         await JS.InvokeVoidAsync("carouselSpinTo", carouselTrackRef, targetOffset, 1500);
 
         CurrentIndex = nextIndex;
+    }
+
+    private async Task PlaySoundAndFade()
+    {
+        // Play the sound using JS interop
+        await JS.InvokeVoidAsync("playClickSound");
+
+        // Start fade out (your existing logic)
+        showSplash = false;
+    }
+
+    private async Task OnLike(Models.Card? card)
+    {
+        
+    }
+
+    private async Task OnDislike(Models.Card? card)
+    {
+
     }
 
     private async Task OnStratButtonClick()

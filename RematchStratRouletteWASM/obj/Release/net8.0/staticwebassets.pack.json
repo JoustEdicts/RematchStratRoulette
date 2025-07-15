@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\RematchStratRouletteWASM.styles.css"
     },
     {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\RSR_logo.png",
+      "PackagePath": "staticwebassets\\RSR_logo.png"
+    },
+    {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\css\\app.css",
       "PackagePath": "staticwebassets\\css\\app.css"
     },
@@ -113,6 +117,10 @@
       "PackagePath": "staticwebassets\\images\\WalkIn.png"
     },
     {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\football_field.jpg",
+      "PackagePath": "staticwebassets\\images\\football_field.jpg"
+    },
+    {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\format.txt",
       "PackagePath": "staticwebassets\\images\\format.txt"
     },
@@ -121,12 +129,32 @@
       "PackagePath": "staticwebassets\\images\\ideas.txt"
     },
     {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\svg_dislike.svg",
+      "PackagePath": "staticwebassets\\images\\svg_dislike.svg"
+    },
+    {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\svg_like.svg",
+      "PackagePath": "staticwebassets\\images\\svg_like.svg"
+    },
+    {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },
     {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\sample-data\\weather.json",
       "PackagePath": "staticwebassets\\sample-data\\weather.json"
+    },
+    {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\sounds\\ball_kick.mp3",
+      "PackagePath": "staticwebassets\\sounds\\ball_kick.mp3"
+    },
+    {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\sounds\\crowd_cheer.mp3",
+      "PackagePath": "staticwebassets\\sounds\\crowd_cheer.mp3"
+    },
+    {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\sounds\\whistle.mp3",
+      "PackagePath": "staticwebassets\\sounds\\whistle.mp3"
     },
     {
       "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.RematchStratRouletteWASM.Microsoft.AspNetCore.StaticWebAssets.props",
