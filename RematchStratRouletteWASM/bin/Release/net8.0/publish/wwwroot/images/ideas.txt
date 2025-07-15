@@ -1,14 +1,15 @@
-Statues: you can only move if you have the ball (short tacles are allowed, GK can move freely in his box)
-Slide Tackle: you must score with a slide tackle
-Hold the Line: you must stay in your half of the field for 3 minutes
-Legendary Striker: Only one player may be in the opposing half of the field at any time
-Legendary Defender: Only one player may be in the friendly half of the field at any time (excluding the goalie)
+Statues: you can only move if you have the ball or in close vicinity to the ball carrier (short tacles are allowed, GK can move freely in his box)
+Turtle Formation: you must stay in your half of the field for 3 minutes
 From Zero to Hero: Score as the goalkeeper, noone can take your place in the nets !
+From Zero to Hero (Hardcore): All balls must be directly given to the goalkeeper. The goalkeeper must score, noone can take his place in the nets !
 Egoista: the ball holder must dribble his way and score on his own !
 Peaceful: you may not tackle (short/slide) until your next goal !
-Hold the Door: the whole team must stand on the friendly goal line and block a shot before playing. Once you lose the ball, you must all run back to the line and start over.
-3 pointer: you must score from outside the box
-Sombrero !: you must score using the sombrero dribble
+Hold the Line! : the whole team must stand on the friendly goal line and block a shot before playing. Once you lose the ball, you must all run back to the line and start over.
 Crab People: everyone must play in defensive mode at all times until the next goal
 NEED LAST GK: everytime the goalkeeper has the ball, you must change goalkeeper
-
+Captain Tsubasa: you MUST score by taking a shot from someone else's rainbow dribble mid-air
+Penatly!: you must shoot ONE penatly in your own nets. The goalkeeper must try to block the shot.
+Holy Trinity: only one player can tackle, only one player can shoot, only one player can pass, only one player can dribble.
+Touchdown: The GK is your quarterback. Every other player may ONLY run to the opposing net and shoot directly from the GK's pass. You may fall back for defense.
+Feather Feet: You can only pass or shoot using the pass !
+Backboard Enjoyers: Passes MUST hit a wall or the backboard. If not, you must let the opposing team take the ball back.

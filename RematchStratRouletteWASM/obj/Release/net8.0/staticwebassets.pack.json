@@ -93,12 +93,36 @@
       "PackagePath": "staticwebassets\\images\\RockFeet.png"
     },
     {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\ShortLobe.gif",
+      "PackagePath": "staticwebassets\\images\\ShortLobe.gif"
+    },
+    {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\ShortLobe.png",
+      "PackagePath": "staticwebassets\\images\\ShortLobe.png"
+    },
+    {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\SlideTackle.gif",
+      "PackagePath": "staticwebassets\\images\\SlideTackle.gif"
+    },
+    {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\SlideTackle.png",
+      "PackagePath": "staticwebassets\\images\\SlideTackle.png"
+    },
+    {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\Sombrero.gif",
       "PackagePath": "staticwebassets\\images\\Sombrero.gif"
     },
     {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\Sombrero.png",
       "PackagePath": "staticwebassets\\images\\Sombrero.png"
+    },
+    {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\ThreePointer.gif",
+      "PackagePath": "staticwebassets\\images\\ThreePointer.gif"
+    },
+    {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\ThreePointer.png",
+      "PackagePath": "staticwebassets\\images\\ThreePointer.png"
     },
     {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\TripleBackboard.gif",
