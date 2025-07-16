@@ -93,6 +93,14 @@
       "PackagePath": "staticwebassets\\images\\LegendaryDefender.png"
     },
     {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\NoCardioTraining.gif",
+      "PackagePath": "staticwebassets\\images\\NoCardioTraining.gif"
+    },
+    {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\NoCardioTraining.png",
+      "PackagePath": "staticwebassets\\images\\NoCardioTraining.png"
+    },
+    {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\OneTouch.gif",
       "PackagePath": "staticwebassets\\images\\OneTouch.gif"
     },

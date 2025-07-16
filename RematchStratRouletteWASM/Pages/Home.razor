@@ -7,7 +7,7 @@
 <audio id="crowdCheerAudio" src="sounds/crowd_cheer.mp3" preload="auto"></audio>
 <audio id="ballKickAudio" src="sounds/ball_kick.mp3" preload="auto"></audio>
 
-<link rel="preload" href="images/BladeShot.gif" as="image">
+<!--<link rel="preload" href="images/BladeShot.gif" as="image">
 <link rel="preload" href="images/CockyShot.gif" as="image">
 <link rel="preload" href="images/DolphinShot.gif" as="image">
 <link rel="preload" href="images/LegendaryAttacker.gif" as="image">
@@ -21,7 +21,7 @@
 <link rel="preload" href="images/ShortLobe.gif" as="image">
 <link rel="preload" href="images/SlideTackle.gif" as="image">
 <link rel="preload" href="images/HoldTheLine.gif" as="image">
-<link rel="preload" href="images/CrabPeople.gif" as="image">
+<link rel="preload" href="images/CrabPeople.gif" as="image">-->
 
 <div class="splash-screen @(showSplash ? "fade-in" : "fade-out")" @onclick="PlaySoundAndFade">
     <div class="logo-wrapper">
@@ -38,10 +38,17 @@
                 var card = cardWithIndex.card;
                 var idx = cardWithIndex.idx;
                 var isSelected = (CurrentIndex.HasValue && idx == CurrentIndex.Value);
-                <div class="card @(isSelected ? "selected-card" : "")" style="background-color:@(isSelected ? "#1f5a4d" : "white")">
-                    <h2 class="card-title" style="color:@(isSelected ? "black" : "gray")">@card.Title</h2>
-                        <img src="@(isSelected ? card.GifPath : GetStaticFrame(card.GifPath))" alt="Cool animation" class="card-image" />
-                        <p class="card-text" style="color:@(isSelected ? "black" : "gray")">@card.Rules</p>
+
+                <div class="card @((isSelected && showCard) ? "selected-card" : "")" style="background-color:@((isSelected && showCard) ? "#1f5a4d" : "white")">
+                    <h2 class="card-title" style="color:@((isSelected && showCard)? "black" : "gray")">@card.Title</h2>
+
+                    @if (isSelected && !showCard)
+                    {
+                        <!-- Preload GIF off-screen (hidden) -->
+                        <img src="@card.GifPath" style="display:none;" />
+                    }
+                    <img src="@((isSelected && showCard) ? card.GifPath : GetStaticFrame(card.GifPath))" alt="Cool animation" class="card-image"/>
+                    <p class="card-text" style="color:@((isSelected && showCard) ? "black" : "gray")">@card.Rules</p>
 
                     <!-- Dislike Icon (bottom left) -->
                     <!--<img src="images/svg_dislike.svg"
@@ -59,7 +66,11 @@
             }
         </div>
     </div>
-    <button class="card-button" @onclick="SpinCarousel">Spin!</button>
+    <button class="card-button"
+            @onclick="SpinCarousel"
+            disabled="@(showCard == false)">
+            @(showCard ? "Spin!" : "Spinning...")
+    </button>
 </div>
 
 <div class="fixed-button-wrapper">
@@ -157,6 +168,7 @@
     }
 
     .fixed-button {
+        user-select: none;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         text-align: center;
         text-decoration: none;
@@ -168,6 +180,7 @@
         }
 
     .submit-button {
+        user-select: none;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -296,6 +309,7 @@
     }
 
     .card-button {
+        user-select: none;
         display: block;
         padding: 1rem 2rem;
         font-size: 1.5rem;
@@ -309,7 +323,16 @@
         transition: background-color 0.3s ease;
     }
 
-        .card-button:hover {
+        .card-button:disabled {
+            pointer-events: none; /* Prevent hover/click interaction */
+            opacity: 0.6; /* Optional: visually show it's disabled */
+            transform: none !important; /* Cancel hover scaling */
+            background-color: #aaa; /* Optional: grayed out look */
+            cursor: not-allowed;
+            background-color: gray;
+        }
+
+        .card-button:not(:disabled):hover {
             background-color: #1f5a4d;
             transform: scale(1.05);
         }
@@ -500,12 +523,19 @@
 
     private async Task SpinCarousel()
     {
+        // We're already spinning, calm down !
+        if (!showCard) return;
+
+        showCard = false;
+
         int nextIndex;
         var rand = new Random();
         do
         {
             nextIndex = rand.Next(AllCards.Count);
         } while (nextIndex == CurrentIndex); // prevent same index
+
+        CurrentIndex = nextIndex;
 
         await JS.InvokeVoidAsync("playKickSound");
 
@@ -523,7 +553,7 @@
 
         await JS.InvokeVoidAsync("carouselSpinTo", carouselTrackRef, nextIndex);
 
-        CurrentIndex = nextIndex;
+        showCard = true;
     }
 
     private async Task PlaySoundAndFade()
@@ -537,30 +567,12 @@
 
     private async Task OnLike(Models.Card? card)
     {
-        
+
     }
 
     private async Task OnDislike(Models.Card? card)
     {
 
-    }
-
-    private async Task OnStratButtonClick()
-    {
-        showCard = false;
-        CurrentCard.GifPath = null;
-
-        int nextIndex = _rand.Next(AllCards.Count);
-
-        if (CurrentIndex.HasValue && nextIndex == CurrentIndex)
-            nextIndex = (CurrentIndex.Value + 1) % (AllCards.Count - 1);
-
-        CurrentIndex = nextIndex;
-        CurrentCard = AllCards[CurrentIndex.Value];
-        StateHasChanged();
-        Console.WriteLine($"New Card: {CurrentCard.Title}");
-        await Task.Delay(25);
-        showCard = true;
     }
 
     private void InitliazeCards()
@@ -655,6 +667,13 @@
         crabPeople.Rules = "Everyone must play in defensive mode at all times until the next goal.";
         crabPeople.Submitter = "Coquinou";
 
+        Models.Card noCardio = new();
+        noCardio.GifPath = "images/NoCardioTraining.gif";
+        noCardio.Title = "No Cardio";
+        noCardio.Rules = "Shouldn't have missed on cardio training ! Walking is now your max speed.";
+        noCardio.Submitter = "LingLing";
+
+        // Create the list of cards and shuffle it
         AllCards.Add(dolphinShot);
         AllCards.Add(bladeShot);
         AllCards.Add(cockyShot);
@@ -670,7 +689,10 @@
         AllCards.Add(shortLobe);
         AllCards.Add(holdTheLine);
         AllCards.Add(crabPeople);
+        AllCards.Add(noCardio);
 
-        CurrentCard = AllCards[_rand.Next(AllCards.Count)];
+        AllCards = AllCards.OrderBy(_ => Guid.NewGuid()).ToList();
+
+        //CurrentCard = AllCards[_rand.Next(AllCards.Count)];
     }
 }

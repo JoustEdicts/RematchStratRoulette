@@ -11,3 +11,4 @@ Holy Trinity: only one player can tackle, only one player can shoot, only one pl
 Touchdown: The GK is your quarterback. Every other player may ONLY run to the opposing net and shoot directly from the GK's pass. You may fall back for defense.
 Feather Feet: You can only pass or shoot using the pass !
 Backboard Enjoyers: Passes MUST hit a wall or the backboard. If not, you must let the opposing team take the ball back.
+VIP: Every player (except GK) must make a human shield in front of the ball carrier. Get down mister president !
