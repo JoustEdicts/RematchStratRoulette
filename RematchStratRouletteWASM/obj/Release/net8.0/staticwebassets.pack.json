@@ -53,6 +53,14 @@
       "PackagePath": "staticwebassets\\images\\CockyShot.png"
     },
     {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\CrabPeople.gif",
+      "PackagePath": "staticwebassets\\images\\CrabPeople.gif"
+    },
+    {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\CrabPeople.png",
+      "PackagePath": "staticwebassets\\images\\CrabPeople.png"
+    },
+    {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\DolphinShot.gif",
       "PackagePath": "staticwebassets\\images\\DolphinShot.gif"
     },

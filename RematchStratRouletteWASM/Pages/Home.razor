@@ -21,6 +21,7 @@
 <link rel="preload" href="images/ShortLobe.gif" as="image">
 <link rel="preload" href="images/SlideTackle.gif" as="image">
 <link rel="preload" href="images/HoldTheLine.gif" as="image">
+<link rel="preload" href="images/CrabPeople.gif" as="image">
 
 <div class="splash-screen @(showSplash ? "fade-in" : "fade-out")" @onclick="PlaySoundAndFade">
     <div class="logo-wrapper">
@@ -648,6 +649,12 @@
         holdTheLine.Rules = "The entire team must stand on the friendly goal line and block a shot before playing. Once you lose the ball, you must all run back to the line and start over.";
         holdTheLine.Submitter = "Coquinou";
 
+        Models.Card crabPeople = new();
+        crabPeople.GifPath = "images/CrabPeople.gif";
+        crabPeople.Title = "Crab People";
+        crabPeople.Rules = "Everyone must play in defensive mode at all times until the next goal.";
+        crabPeople.Submitter = "Coquinou";
+
         AllCards.Add(dolphinShot);
         AllCards.Add(bladeShot);
         AllCards.Add(cockyShot);
@@ -662,6 +669,7 @@
         AllCards.Add(slideTackle);
         AllCards.Add(shortLobe);
         AllCards.Add(holdTheLine);
+        AllCards.Add(crabPeople);
 
         CurrentCard = AllCards[_rand.Next(AllCards.Count)];
     }
