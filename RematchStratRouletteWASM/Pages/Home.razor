@@ -20,6 +20,7 @@
 <link rel="preload" href="images/ThreePointer.gif" as="image">
 <link rel="preload" href="images/ShortLobe.gif" as="image">
 <link rel="preload" href="images/SlideTackle.gif" as="image">
+<link rel="preload" href="images/HoldTheLine.gif" as="image">
 
 <div class="splash-screen @(showSplash ? "fade-in" : "fade-out")" @onclick="PlaySoundAndFade">
     <div class="logo-wrapper">
@@ -641,6 +642,12 @@
         shortLobe.Rules = "You MUST score with a short lobe !";
         shortLobe.Submitter = "Coquinou";
 
+        Models.Card holdTheLine = new();
+        holdTheLine.GifPath = "images/HoldTheLine.gif";
+        holdTheLine.Title = "Hold the Line !";
+        holdTheLine.Rules = "The entire team must stand on the friendly goal line and block a shot before playing. Once you lose the ball, you must all run back to the line and start over.";
+        holdTheLine.Submitter = "Coquinou";
+
         AllCards.Add(dolphinShot);
         AllCards.Add(bladeShot);
         AllCards.Add(cockyShot);
@@ -654,6 +661,7 @@
         AllCards.Add(threePointer);
         AllCards.Add(slideTackle);
         AllCards.Add(shortLobe);
+        AllCards.Add(holdTheLine);
 
         CurrentCard = AllCards[_rand.Next(AllCards.Count)];
     }

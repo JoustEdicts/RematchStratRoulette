@@ -61,6 +61,14 @@
       "PackagePath": "staticwebassets\\images\\DolphinShot.png"
     },
     {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\HoldTheLine.gif",
+      "PackagePath": "staticwebassets\\images\\HoldTheLine.gif"
+    },
+    {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\HoldTheLine.png",
+      "PackagePath": "staticwebassets\\images\\HoldTheLine.png"
+    },
+    {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\LegendaryAttacker.gif",
       "PackagePath": "staticwebassets\\images\\LegendaryAttacker.gif"
     },
