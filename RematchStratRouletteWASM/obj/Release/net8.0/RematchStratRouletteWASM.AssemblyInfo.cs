@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RematchStratRouletteWASM")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7d54877c496525d908132a8dc7eb29300cc68e99")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+093b2451a372e17763aa663ce29e2b9bccb9cb0d")]
 [assembly: System.Reflection.AssemblyProductAttribute("RematchStratRouletteWASM")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RematchStratRouletteWASM")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

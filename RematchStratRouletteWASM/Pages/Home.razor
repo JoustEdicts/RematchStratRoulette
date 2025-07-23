@@ -285,6 +285,9 @@
     }
 
     .carousel-track {
+        user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
         display: flex;
         gap: 40px;
         transition: transform 0.3s ease-out;
@@ -474,6 +477,64 @@
     }
 </script>
 
+<script>
+    window.enableCarouselDrag = function (carouselElement) {
+        let isDragging = false;
+        let startX;
+        let scrollLeft;
+        let currentX;
+
+        function onMouseDown(e) {
+            isDragging = true;
+            startX = e.pageX;
+            scrollLeft = carouselElement._currentX || 0;
+            carouselElement.style.cursor = 'grabbing';
+            e.preventDefault();
+        }
+
+        function onMouseMove(e) {
+            if (!isDragging) return;
+            currentX = e.pageX;
+            const walk = currentX - startX;
+            carouselElement._currentX = scrollLeft + walk;
+            carouselElement.style.transform = `translateX(${carouselElement._currentX}px)`;
+        }
+
+        function onMouseUp() {
+            isDragging = false;
+            carouselElement.style.cursor = 'grab';
+        }
+
+        // Touch support
+        function onTouchStart(e) {
+            startX = e.touches[0].pageX;
+            isDragging = true;
+            scrollLeft = carouselElement._currentX || 0;
+        }
+
+        function onTouchMove(e) {
+            if (!isDragging) return;
+            const walk = e.touches[0].pageX - startX;
+            carouselElement._currentX = scrollLeft + walk;
+            carouselElement.style.transform = `translateX(${carouselElement._currentX}px)`;
+        }
+
+        function onTouchEnd() {
+            isDragging = false;
+        }
+
+        carouselElement.addEventListener('mousedown', onMouseDown);
+        carouselElement.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+
+        carouselElement.addEventListener('touchstart', onTouchStart, { passive: true });
+        carouselElement.addEventListener('touchmove', onTouchMove, { passive: false });
+        document.addEventListener('touchend', onTouchEnd);
+
+        carouselElement.style.cursor = 'grab';
+    };
+</script>
+
 <script data-goatcounter="https://joustedicts.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 
@@ -495,6 +556,14 @@
     {
         InitliazeCards();
         base.OnInitialized();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("enableCarouselDrag", carouselTrackRef);
+        }
     }
 
     private string GetStaticFrame(string gifPath)
