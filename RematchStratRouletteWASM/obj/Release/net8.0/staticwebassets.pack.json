@@ -149,6 +149,14 @@
       "PackagePath": "staticwebassets\\images\\ThreePointer.png"
     },
     {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\Traitor.gif",
+      "PackagePath": "staticwebassets\\images\\Traitor.gif"
+    },
+    {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\Traitor.png",
+      "PackagePath": "staticwebassets\\images\\Traitor.png"
+    },
+    {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\TripleBackboard.gif",
       "PackagePath": "staticwebassets\\images\\TripleBackboard.gif"
     },

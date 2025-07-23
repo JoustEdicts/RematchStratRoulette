@@ -7,22 +7,6 @@
 <audio id="crowdCheerAudio" src="sounds/crowd_cheer.mp3" preload="auto"></audio>
 <audio id="ballKickAudio" src="sounds/ball_kick.mp3" preload="auto"></audio>
 
-<!--<link rel="preload" href="images/BladeShot.gif" as="image">
-<link rel="preload" href="images/CockyShot.gif" as="image">
-<link rel="preload" href="images/DolphinShot.gif" as="image">
-<link rel="preload" href="images/LegendaryAttacker.gif" as="image">
-<link rel="preload" href="images/LegendaryDefender.gif" as="image">
-<link rel="preload" href="images/OneTouch.gif" as="image">
-<link rel="preload" href="images/RockFeet.gif" as="image">
-<link rel="preload" href="images/Sombrero.gif" as="image">
-<link rel="preload" href="images/TripleBackboard.gif" as="image">
-<link rel="preload" href="images/WalkIn.gif" as="image">
-<link rel="preload" href="images/ThreePointer.gif" as="image">
-<link rel="preload" href="images/ShortLobe.gif" as="image">
-<link rel="preload" href="images/SlideTackle.gif" as="image">
-<link rel="preload" href="images/HoldTheLine.gif" as="image">
-<link rel="preload" href="images/CrabPeople.gif" as="image">-->
-
 <div class="splash-screen @(showSplash ? "fade-in" : "fade-out")" @onclick="PlaySoundAndFade">
     <div class="logo-wrapper">
         <div class="logo-glow"></div>
@@ -673,6 +657,12 @@
         noCardio.Rules = "Shouldn't have missed on cardio training ! Walking is now your max speed.";
         noCardio.Submitter = "LingLing";
 
+        Models.Card traitor = new();
+        traitor.GifPath = "images/NoCardioTraining.gif";
+        traitor.Title = "Traitor";
+        traitor.Rules = "Designate a player as the traitor. This player must now stand on the opposing goal-line and block incoming shots.";
+        traitor.Submitter = "Coquinou";
+
         // Create the list of cards and shuffle it
         AllCards.Add(dolphinShot);
         AllCards.Add(bladeShot);
@@ -690,6 +680,7 @@
         AllCards.Add(holdTheLine);
         AllCards.Add(crabPeople);
         AllCards.Add(noCardio);
+        AllCards.Add(traitor);
 
         AllCards = AllCards.OrderBy(_ => Guid.NewGuid()).ToList();
 
