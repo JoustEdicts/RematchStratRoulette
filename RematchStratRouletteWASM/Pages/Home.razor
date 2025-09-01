@@ -732,6 +732,18 @@
         traitor.Rules = "Designate a player as the traitor. This player must now stand on the opposing goal-line and block incoming shots.";
         traitor.Submitter = "Coquinou";
 
+        Models.Card legendaryGk = new();
+        legendaryGk.GifPath = "images/LegendaryGk.gif";
+        legendaryGk.Title = "Legendary Goalkeeper";
+        legendaryGk.Rules = "Every player on the field (but the keeper) must stay in the attacking half until the next goal!";
+        legendaryGk.Submitter = "Lusion";
+
+        Models.Card hotPotato = new();
+        hotPotato.GifPath = "images/HotPotato.gif";
+        hotPotato.Title = "Hot Potato";
+        hotPotato.Rules = "You can’t hold the ball for more than 2 seconds.";
+        hotPotato.Submitter = "Lusion";
+
         // Create the list of cards and shuffle it
         AllCards.Add(dolphinShot);
         AllCards.Add(bladeShot);
@@ -750,6 +762,8 @@
         AllCards.Add(crabPeople);
         AllCards.Add(noCardio);
         AllCards.Add(traitor);
+        AllCards.Add(legendaryGk);
+        AllCards.Add(hotPotato);
 
         AllCards = AllCards.OrderBy(_ => Guid.NewGuid()).ToList();
 

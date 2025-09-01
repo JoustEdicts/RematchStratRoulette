@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "RematchStratRouletteWASM",
   "resources": {
-    "hash": "sha256-oAoDfjeM7S5K3XqaDWT/T9NF8KoOVfv52GfYnqTWWVE=",
+    "hash": "sha256-3VNr2E+LN8Yo0eyEIUmNRa2x44TQfZPcUkCPAUAq3g8=",
     "jsModuleNative": {
       "dotnet.native.8.0.0.p60tyd4x2o.js": "sha256-LjLDIz9+J7uuiwMlQ4HbNx2BnSpphOtO2MwkoI28vdI="
     },
@@ -208,10 +208,10 @@
       "mscorlib.wasm": "sha256-cDuLeL3OCtVtiid/dyex1MVgbuzDSRwZxKzuP2Dp4mg=",
       "netstandard.wasm": "sha256-A0h86SDieTMoU/wU2JTszWCsUmMuguDcbap0b0BzsmI=",
       "System.Private.CoreLib.wasm": "sha256-/0DNIm/T0C07X7Tuz5uR8JvVCoAfEE2MnfPUSjyS9xc=",
-      "RematchStratRouletteWASM.wasm": "sha256-pzQy9mGpYofKGzjHr6krpyVIjYPrix5WhlpZPAEg4GQ="
+      "RematchStratRouletteWASM.wasm": "sha256-SgJtz8pJt/FpiUmR1SmU0Zk+2YnWzKsbDl778imeH+A="
     },
     "pdb": {
-      "RematchStratRouletteWASM.pdb": "sha256-WlSarspLkoapi1FUCp9OgapwOlHdDUIdN5vWm+gpvRU="
+      "RematchStratRouletteWASM.pdb": "sha256-cE8CX6l6mPGWzBUuzzh0Q8oya3hobXcvlGGgXH8zfBk="
     }
   },
   "cacheBootResources": true,

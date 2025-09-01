@@ -77,6 +77,14 @@
       "PackagePath": "staticwebassets\\images\\HoldTheLine.png"
     },
     {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\HotPotato.gif",
+      "PackagePath": "staticwebassets\\images\\HotPotato.gif"
+    },
+    {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\HotPotato.png",
+      "PackagePath": "staticwebassets\\images\\HotPotato.png"
+    },
+    {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\LegendaryAttacker.gif",
       "PackagePath": "staticwebassets\\images\\LegendaryAttacker.gif"
     },
@@ -91,6 +99,14 @@
     {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\LegendaryDefender.png",
       "PackagePath": "staticwebassets\\images\\LegendaryDefender.png"
+    },
+    {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\LegendaryGk.gif",
+      "PackagePath": "staticwebassets\\images\\LegendaryGk.gif"
+    },
+    {
+      "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\LegendaryGk.png",
+      "PackagePath": "staticwebassets\\images\\LegendaryGk.png"
     },
     {
       "Id": "C:\\Users\\jmlom\\source\\repos\\RematchStratRouletteWASM\\RematchStratRouletteWASM\\wwwroot\\images\\NoCardioTraining.gif",
